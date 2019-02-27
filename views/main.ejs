@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>C Forms</title>
+
+    <!-- CSS (load bootstrap from a CDN) -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        body {
+            padding-top: 50px;
+            min-height: 100%;
+        }
+        #loading {
+            display: none;
+            min-height: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="container">
+
+    <main>
+        <div class="jumbotron">
+            <h1>C Forms</h1>
+            <p>Welcome</p>
+
+            <h2>View your forms</h2>
+            <ul>
+                <% links.forEach(function(link) { %>
+                <li>
+                    <a href="<%= link.href %>">
+                        <%= link.label %>
+                    </a>
+                </li>
+                <% }); %>
+            </ul>
+
+            <h2>Download your forms</h2>
+            <p><a href="/download" class="btn btn-primary" role="button">Download Zip</a></p>
+
+            <h2>Regenerate your forms</h2>
+            <p><a class="btn btn-primary" role="button" id="refresh">Refresh</a></p>
+
+            <div id='loading'>
+                <img src="/img/loading.gif">
+                <br />
+                Regenerating your forms
+            </div>
+            <script>
+                $('#refresh').on('click', function(e) {
+                    e.preventDefault();
+                    $('#loading').show();
+                    $.ajax({
+                        type: 'POST',
+                        url: '/refresh',
+                        success: function () {
+                            alert('Successfully updated the forms');
+                            $('#loading').hide();
+                            window.location.reload();
+                        },
+                        error: function (e) {
+                            alert('Sorry, the forms could not be updated');
+                            console.log(e);
+                            $('#loading').hide();
+                        }
+                        
+                    })
+                })
+            </script>
+        </div>
+    </main>
+
+    <footer>
+        <% include ./partials/footer %>
+    </footer>
+
+</body>
+
+</html>

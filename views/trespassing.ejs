@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>C Forms</title>
+
+    <!-- CSS (load bootstrap from a CDN) -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        body {
+            padding-top: 50px;
+            min-height: 100%;
+        }
+        #loading {
+            display: none;
+            min-height: 100%;
+            text-align: center;
+        }
+        h1, #goaway1 {
+            color: red;
+            text-align: center;
+        }
+        #goaway2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="container">
+
+    <main>
+        <div class="jumbotron">
+            <h1 id="goaway1">PRIVATE PROPERTY</h1>
+            <hr>
+            <h2 id="goaway2">NO TRESPASSING</h1>
+        </div>
+    </main>
+
+    <footer>
+        <% include ./partials/footer %>
+    </footer>
+
+</body>
+
+</html>
